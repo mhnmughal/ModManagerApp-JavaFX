@@ -1,0 +1,84 @@
+plugins {
+  id 'java'
+  id 'application'
+  id 'org.javamodularity.moduleplugin' version '1.8.12'
+  id 'org.openjfx.javafxplugin' version '0.0.13'
+  id 'org.beryx.jlink' version '2.25.0'
+}
+
+group 'org.mod'
+version '1.0-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+}
+
+ext {
+  junitVersion = '5.10.0'
+}
+
+sourceCompatibility = '17'  // Change to JDK 17
+targetCompatibility = '17'  // Change to JDK 17
+
+tasks.withType(JavaCompile) {
+  options.encoding = 'UTF-8'
+}
+
+application {
+  mainModule = 'org.mod.modmanager'
+  mainClass = 'org.mod.modmanager.App'
+}
+
+javafx {
+  version = '21.0.5'  // Update to the latest version of JavaFX
+  modules = ['javafx.controls', 'javafx.fxml', 'javafx.web', 'javafx.swing', 'javafx.media']
+}
+
+
+dependencies {
+  implementation 'org.jetbrains.kotlin:kotlin-stdlib:1.9.10'  // Add this line
+  implementation('org.controlsfx:controlsfx:11.1.2')
+  implementation('com.dlsc.formsfx:formsfx-core:11.6.0') {
+    exclude(group: 'org.openjfx')
+  }
+  implementation('net.synedra:validatorfx:0.4.0') {
+    exclude(group: 'org.openjfx')
+  }
+  implementation('org.kordamp.ikonli:ikonli-javafx:12.3.1')
+  implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
+  implementation('eu.hansolo:tilesfx:11.48') {
+    exclude(group: 'org.openjfx')
+  }
+  implementation('com.github.almasb:fxgl:11.17') {
+    exclude(group: 'org.openjfx')
+    exclude group: 'org.jetbrains.kotlin', module: 'kotlin-stdlib'  // Optional exclusion if not needed
+  }
+
+  testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
+  testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+}
+
+test {
+  useJUnitPlatform()
+}
+
+jlink {
+  imageDir = project.file("${buildDir}/distributions/jlink-image")  // This is where the runtime image will be created
+  options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
+  launcher {
+    name = 'ModManagerApp'  // This will be the name of your executable
+  }
+
+  jpackage {
+    installerType = 'exe'  // Specify the target type as .exe (for Windows)
+    installerName = 'ModManager'  // Name of the installer
+    appVersion = '1.0'  // Version of the application
+    vendor = 'MHNsoft'  // Vendor name
+    jvmArgs = ['-Xmx1024m']  // Optional JVM arguments to set memory size
+    // icon = file('src/main/resources/app_icon.ico')  // Optional: Path to your icon
+  }
+}
+
+jlinkZip {
+  group = 'distribution'
+}

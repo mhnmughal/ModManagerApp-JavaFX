@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="675.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mod.modmanager.ModManagerController">
+    <children>
+        <TextField fx:id="gameFolderAddress" editable="false" layoutX="206.0" layoutY="131.0" prefHeight="25.0" prefWidth="260.0" promptText="Installation files of the game.">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0" />
+            </font></TextField>
+        <TextField fx:id="downloadFolderAddress" editable="false" layoutX="206.0" layoutY="181.0" prefHeight="25.0" prefWidth="260.0" promptText="Mod zip file">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0" />
+            </font></TextField>
+        <Label layoutX="39.0" layoutY="135.0" prefHeight="25.0" prefWidth="149.0" text="Select Game Folder">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Label>
+        <Label layoutX="39.0" layoutY="181.0" prefHeight="25.0" prefWidth="149.0" text="Select Download File">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Label>
+        <Button fx:id="gameFolder" layoutX="490.0" layoutY="131.0" text="Select">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Button>
+        <Button fx:id="downloadFolder" layoutX="493.0" layoutY="181.0" text="Select">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Button>
+        <Button fx:id="installFolder" layoutX="492.0" layoutY="231.0" text="Select ">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Button>
+        <Button fx:id="installMod" layoutX="554.0" layoutY="397.0" text="Install Mod">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Button>
+        <Button fx:id="revertMod" layoutX="438.0" layoutY="397.0" text="Revert Mod">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Button>
+        <TextField fx:id="installFolderAddress" editable="false" layoutX="206.0" layoutY="231.0" prefHeight="25.0" prefWidth="260.0" promptText="where the mod files will be copied after unzipping">
+            <font>
+                <Font name="Times New Roman Bold" size="14.0" />
+            </font></TextField>
+        <Label layoutX="39.0" layoutY="231.0" prefHeight="25.0" prefWidth="149.0" text="Select Install Folder">
+            <font>
+                <Font name="Times New Roman Bold" size="16.0" />
+            </font></Label>
+        <ProgressBar fx:id="progressBar" layoutX="36.0" layoutY="402.0" prefHeight="25.0" prefWidth="326.0" progress="0.0" />
+    </children>
+</AnchorPane>
